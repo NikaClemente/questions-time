@@ -12,25 +12,67 @@
 </head>
 
 <body>
+    <div class="wrapper">
+        <header>
+            <nav class="navbar navbar-expand-md navbar-light navbar-bg fixed-top">
+                <a class="navbar-brand" href="#">Вопрос - Ответ</a>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Вопрос - Ответ</a>
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto"></ul>
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="button">Войти</button>
+                </div>
+            </nav>
+        </header>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto"></ul>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Войти</button>
-        </div>
-    </nav>
+        <main role="main" class="flex-shrink-0">
+            <div class="container">
+                <form class="questionPostForm">
+                    <div class="form-group">
+                        <label for="questionInput" class="h2">Задать вопрос:</label>
+                        <input type="text" class="form-control is-invalid" id="questionInput"
+                            placeholder="Что вы хотите спросить?" min="5" max="256" required>
+                        <div class="invalid-feedback">
+                            Please enter a message in the textarea.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
 
-    <main role="main" class="container">
+                <div class="questionsList">
+                    <p class="h4">Список ваших вопросов:</p>
+                    <ol class="list-group" style="padding-left: 24px;">
+                        <li>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div><b>[Вопрос]</b>Бла бла бла</div>
+                                <span class="badge badge-success">Like</span>
+                            </div>
+                            <div class="dateTime text-muted">01.01.2020 00:00</div>
+                            <div><b>[Ответ]</b>Бла бла бла</div>
+                            <div class="dateTime text-muted">01.01.2020 00:00</div>
+                        </li>
+                    </ol>
+                </div>
 
-        <div class="starter-template">
-            <h1>Bootstrap starter template</h1>
-            <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text
-                and a mostly barebones HTML document.</p>
-        </div>
+                <div class="questionsList">
+                    <p class="h4">Важные вопросы:</p>
+                    <ol class="list-group" style="padding-left: 24px;">
+                        <li>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div><b>[Вопрос]</b>Бла бла бла</div>
+                            </div>
+                            <div><b>[Ответ]</b>Бла бла бла</div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </main>
 
-    </main>
+        <footer class="footer mt-auto py-3">
+            <div class="container">
+                <span class="text-muted">© Nika Clemente, 2020. Все права защищены.</span>
+            </div>
+        </footer>
+    </div>
 
 </body>
 

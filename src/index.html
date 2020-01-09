@@ -26,21 +26,23 @@
 
         <main role="main" class="flex-shrink-0">
             <div class="container">
-                <form class="questionPostForm">
+                <form id="questionPostForm">
                     <div class="form-group">
                         <label for="questionInput" class="h2">Задать вопрос:</label>
-                        <input type="text" class="form-control is-invalid" id="questionInput"
-                            placeholder="Что вы хотите спросить?" min="5" max="256" required>
-                        <div class="invalid-feedback">
-                            Please enter a message in the textarea.
+                        <input id="questionInput" type="text" class="form-control" placeholder="Что вы хотите спросить?"
+                            min="5" max="256" required>
+                        <div id="feedback" class="invalid-feedback">
+                            Вопрос не должен быть короче 5 и более 256 символов.
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Отправить</button>
+                    <button id="submit" type="submit" class="btn btn-primary">Отправить</button>
                 </form>
 
-                <div class="questionsList">
-                    <p class="h4">Список ваших вопросов:</p>
-                    <ol class="list-group" style="padding-left: 24px;">
+                <div id="personQuestionList" class="block">
+                    <span class="h4">Список ваших вопросов:</span>
+                    <button id="hideBtn" class="h4 btn btn-link text-muted" type="button">[скрыть]</button>
+
+                    <ol id="questionsList" class="list-group">
                         <li>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div><b>[Вопрос]</b>Бла бла бла</div>
@@ -53,9 +55,10 @@
                     </ol>
                 </div>
 
-                <div class="questionsList">
-                    <p class="h4">Важные вопросы:</p>
-                    <ol class="list-group" style="padding-left: 24px;">
+                <div id="globalQuestionList" class="block">
+                    <span class="h4">Важные вопросы:</span>
+                    <button id="hideBtn" class="h4 btn btn-link text-muted" type="button">[скрыть]</button>
+                    <ol id="questionsList" class="list-group">
                         <li>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div><b>[Вопрос]</b>Бла бла бла</div>

@@ -15,6 +15,7 @@ body {
 .navbar {
     width: 90%;
     margin: 0 auto;
+    box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.24);
 }
 
 .navbar-bg {
@@ -30,7 +31,7 @@ main > .container {
     padding: 60px 15px 0;
 }
 
-.questionPostForm {
+#questionPostForm {
     width: 50%;
     
 }
@@ -39,8 +40,18 @@ main > .container {
     font-size: 12px;
 }
 
-.questionsList {
+#questionsList {
+    display: block;
+    padding-left: 24px;
+    transition: display 300ms;
+}
+
+.block {
     margin-top: 3rem;
+}
+
+#feedback {
+    display: none;
 }
 
 .footer {

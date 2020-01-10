@@ -1,5 +1,6 @@
 import './styles.css'
 import { hideElement, getHideBtn, getQuestionList, isValid } from './scripts/main'
+import { modalLogIN } from './scripts/modal'
 import { Question } from './scripts/db'
 
 const personQuestionList = document.getElementById('personQuestionList')
@@ -14,10 +15,16 @@ const questionInputForm = document.getElementById('questionPostForm')
 const questionInput = questionInputForm.querySelector('#questionInput')
 const questionSubmit = questionInputForm.querySelector('#submit')
 
+const modalLogINBlock = document.getElementById('modalLogIN')
+const logINbtn = document.getElementById('logINbtn')
+
 window.addEventListener('load', Question.renderList)
 personQuestionList_hideBtn.addEventListener('click', () => hideElement(personQuestions))
 // globalQuestionList_hideBtn.addEventListener('click', () => hideElement(globalQuestions))
 questionInputForm.addEventListener('submit', submitQuestionFormHandler)
+logINbtn.addEventListener('click', () => {
+    modalLogIN(modalLogINBlock)
+})
 
 function submitQuestionFormHandler(event) {
     event.preventDefault()
@@ -38,3 +45,5 @@ function submitQuestionFormHandler(event) {
         inputFeedback.style.display = 'block'
     }
 }
+
+

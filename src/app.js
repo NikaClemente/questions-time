@@ -6,9 +6,9 @@ const personQuestionList = document.getElementById('personQuestionList')
 const personQuestionList_hideBtn = getHideBtn(personQuestionList)
 const personQuestions = getQuestionList(personQuestionList)
 
-const globalQuestionList = document.getElementById('globalQuestionList')
-const globalQuestionList_hideBtn = getHideBtn(globalQuestionList)
-const globalQuestions = getQuestionList(globalQuestionList)
+// const globalQuestionList = document.getElementById('globalQuestionList')
+// const globalQuestionList_hideBtn = getHideBtn(globalQuestionList)
+// const globalQuestions = getQuestionList(globalQuestionList)
 
 const questionInputForm = document.getElementById('questionPostForm')
 const questionInput = questionInputForm.querySelector('#questionInput')
@@ -16,7 +16,7 @@ const questionSubmit = questionInputForm.querySelector('#submit')
 
 window.addEventListener('load', Question.renderList)
 personQuestionList_hideBtn.addEventListener('click', () => hideElement(personQuestions))
-globalQuestionList_hideBtn.addEventListener('click', () => hideElement(globalQuestions))
+// globalQuestionList_hideBtn.addEventListener('click', () => hideElement(globalQuestions))
 questionInputForm.addEventListener('submit', submitQuestionFormHandler)
 
 function submitQuestionFormHandler(event) {

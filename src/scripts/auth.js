@@ -1,12 +1,30 @@
+import config from "../config"
+import { DB } from "./db"
+
 export class Auth {
-    static createNewUser(email, pass) {
-        console.log('createNewUser', email, pass)
+    static createNewUser(email, password) {
+        console.log('createNewUser', email, password)
     }
 
-    static login(email, pass) {
-        console.log('login', email, pass)
+    static login(email, password) {
+        console.log('login', email, password)
 
-        // fetch()
+        return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${config.apiKey}`, {
+            method: 'POST',
+            body: JSON.stringify({
+                email, password,
+                returnSecureToken: true
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                return data
+            })
+
     }
 }
 

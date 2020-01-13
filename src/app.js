@@ -1,7 +1,7 @@
 import './styles.css'
 import { hideElement, getHideBtn, getQuestionList, isValid } from './scripts/main'
 import { modalLogIN } from './scripts/modal'
-import { Question } from './scripts/db'
+import { DB } from './scripts/db'
 
 const personQuestionList = document.getElementById('personQuestionList')
 const personQuestionList_hideBtn = getHideBtn(personQuestionList)
@@ -18,7 +18,12 @@ const questionSubmit = questionInputForm.querySelector('#submit')
 const modalLogINBlock = document.getElementById('modalLogIN')
 const logINbtn = document.getElementById('logINbtn')
 
-window.addEventListener('load', Question.renderList)
+window.addEventListener('load', () => {
+    DB.renderQuestionList()
+})
+
+
+
 personQuestionList_hideBtn.addEventListener('click', () => hideElement(personQuestions))
 // globalQuestionList_hideBtn.addEventListener('click', () => hideElement(globalQuestions))
 questionInputForm.addEventListener('submit', submitQuestionFormHandler)
@@ -32,7 +37,7 @@ function submitQuestionFormHandler(event) {
     const date = new Date().toJSON()
     if (isValid(questionInput.value)) {
         questionSubmit.disabled = true
-        Question.create({ value: questionInput.value, date })
+        DB.createQuestion({ value: questionInput.value, date })
             .then(() => {
                 questionSubmit.disabled = false
             })

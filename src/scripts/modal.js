@@ -1,4 +1,5 @@
-import { Auth, isValidAuthForm } from './auth'
+import { isValidAuthForm } from './auth'
+import { DB } from './db'
 
 export function modalLogIN(element) {
     const content = `
@@ -47,14 +48,14 @@ export function modalLogIN(element) {
         isValid = isValidAuthForm('email', email) && isValidAuthForm('password', pass)
         if (isValid) {
             closeModal(element)
-            Auth.createNewUser(email.value, pass.value)
+            DB.regNewUser(email.value, pass.value)
         }
     })
     loginBtn.addEventListener('click', () => {
         isValid = isValidAuthForm('email', email) && isValidAuthForm('password', pass)
         if (isValid) {
             closeModal(element)
-            Auth.login(email.value, pass.value)
+            DB.loginUser(email.value, pass.value)
         }
 
     })

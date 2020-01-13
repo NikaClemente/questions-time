@@ -1,7 +1,23 @@
 import { getQuestionList } from './main'
+import { Auth } from './auth'
 
-export class Question {
-    static create(question) {
+export class DB {
+    static getDateToToken(data) {
+        const token = data.idToken
+        const userUid = data.localId
+        if (!token) {
+            document.getElementById('nickname').innerHTML = ''
+            return alert('Нет токена!')
+        }
+        return fetch(`https://questions-time.firebaseio.com/questions.json?auth=${token}`)
+            .then(response => response.json())
+            .then(questions => {
+                console.log('Questions', questions)
+            })
+            .then(DB.getUserDate(data))
+    }
+
+    static createQuestion(question) {
 
         return fetch('https://questions-time.firebaseio.com/questions.json', {
             method: 'POST',
@@ -17,10 +33,10 @@ export class Question {
                 return question
             })
             .then(addToLocalStorage)
-            .then(Question.renderList)
+            .then(Question.renderQuestionList)
     }
 
-    static renderList() {
+    static renderQuestionList() {
         const questionsList = getQuestionsFromLocalStorage()
         const html = questionsList.length
             ? questionsList.map(toCard).join('')
@@ -31,6 +47,30 @@ export class Question {
 
         personQuestions.innerHTML = html
     }
+
+    static regNewUser(email, password) {
+        Auth.createNewUser(email, password)
+    }
+
+    static loginUser(email, password) {
+        Auth.login(email, password)
+            .then(data => DB.getDateToToken(data))
+    }
+
+    static getUserDate(data) {
+        let user = ''
+        return fetch(`https://questions-time.firebaseio.com/users.json?auth=${data.idToken}`)
+            .then(users => users.json())
+            .then(users => {
+                for (const uid in users) {
+                    if (uid == data.localId) {
+                        user = users[uid]
+                    }
+                }
+                document.getElementById('nickname').innerHTML = user.nickname
+
+            })
+    }
 }
 
 function addToLocalStorage(question) {
@@ -39,8 +79,16 @@ function addToLocalStorage(question) {
     localStorage.setItem('questions', JSON.stringify(questionsList))
 }
 
+function addToLocalStorageUser(token) {
+    localStorage.setItem('cashData', JSON.stringify(token))
+}
+
 function getQuestionsFromLocalStorage() {
     return JSON.parse(localStorage.getItem('questions') || '[]')
+}
+
+function getUserFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('cashData') || '')
 }
 
 function toCard(question) {
